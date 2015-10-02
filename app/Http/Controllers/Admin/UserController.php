@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -45,13 +46,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-    	$usuario= new User($request->all());
-    	$usuario->vendedor = \Auth::user()->id;
-    	$usuario->save();
+    	$data = $request->all();
     	
-    	return \Redirect::route('admin.user.index');
+    	$rules = array(
+    		'email' => 'required|unique:users,email',
+    		'nombre' => 'required',
+    		'password' => 'required',
+    		'tipo' => 'required',
+    	);
+    	$v = Validator::make($data, $rules);
+    	if ($v->fails()){
+    		return redirect()->back()->withErrors($v->errors())->withInput($request->except('password'));
+    	}else{
+	    	$usuario= new User($request->all());
+	    	$usuario->vendedor = (\Auth::user() == null)? 1 : \Auth::user()->id;
+	    	$usuario->save();
+	    	
+	    	Session::flash("mensaje", "Usuario creado correctamente!!");
+	    	
+	    	return (\Auth::user() == null)? \Redirect::route('auth/login') : \Redirect::route('admin.user.index');    		
+    	}
+    	
     }
-
+   
     /**
      * Display the specified resource.
      *
@@ -88,6 +105,8 @@ class UserController extends Controller
     	$usuario->fill($request->all());
     	$usuario->vendedor = \Auth::user()->id;
     	$usuario->save();
+    	
+    	Session::flash("mensaje", "Usuario editado correctamente!!");
     	 
     	return \Redirect::route('admin.user.index');
     }

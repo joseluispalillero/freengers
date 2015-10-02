@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -60,6 +61,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+    	Session::flash("mensaje", "Usuario creado correctamente!!");
     	return User::create([
             'nombre' => $data['nombre'],
             'apellidoPaterno' => $data['apellidoPaterno'],
@@ -70,6 +72,7 @@ class AuthController extends Controller
             'vendedor' => '1',
             'tipo' => $data['tipo'],
         ]);
+    	
     }
     
     

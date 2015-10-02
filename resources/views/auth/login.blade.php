@@ -14,11 +14,15 @@
   
   
     <div class="login-box">
+	  	@if (Session::has("mensaje"))
+			<p class="alert alert-success">{{ Session::get('mensaje') }}</p>
+		@endif
       <div class="login-logo">
         <a href="../../index2.html"><b>Login</b> Bienvenidos</a>
       </div>
       <div class="login-box-body">
 	  	<div class="login-box-msg" style="text-align: left !important">
+	  	
 			@if (Session::has('errors'))
 			    <div class="alert alert-error" role="alert">
 				<ul>

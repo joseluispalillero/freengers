@@ -10,12 +10,23 @@
 </head>
 <body class="login-page">
 	<div class="login-box">
+		
+		@if ($errors->any())
+			<div class="alert alert-error">
+				<ul>
+				@foreach($errors->all() as $error)
+					<li> {{$error}} </li>
+				@endforeach
+				</ul>
+			</div>
+		@endif
+		
 		<div class="login-logo">
 			<a href="../../index2.html"><b>Registrarse</b> </a>
 		</div>
 		<div class="login-box-body">
-			<div class="login-box-msg" style="text-align: left !important">
-				{!! Form::open(['route' => 'auth/register', 'class' => 'form']) !!}
+				<div class="login-box-msg" style="text-align: left !important">
+				{!! Form::open(['route' => 'admin.user.store', 'class' => 'form']) !!}
 				<div class="form-group">
 					<label>Nombre</label> 
 					{!! Form::input('text', 'nombre', '', ['class'=> 'form-control']) !!}

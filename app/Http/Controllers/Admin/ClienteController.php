@@ -48,7 +48,7 @@ class ClienteController extends Controller
     	$usuario= new Clientes($request->all());
     	$usuario->vendedor = \Auth::user()->id;
     	$usuario->save();
-    	
+    	Session::flash("mensaje", "Cliente creado correctamente!!");
     	return \Redirect::route('admin.cliente.index');
     }
 
@@ -88,6 +88,7 @@ class ClienteController extends Controller
     	$usuario->fill($request->all());
     	$usuario->vendedor = \Auth::user()->id;
     	$usuario->save();
+    	Session::flash("mensaje", "Cliente actualizado correctamente!!");
     	 
     	return \Redirect::route('admin.cliente.index');
     }
