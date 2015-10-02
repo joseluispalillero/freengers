@@ -25,4 +25,5 @@ Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthContr
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){	
 	Route::resource('user', 'UserController');
+	Route::resource('cliente', 'ClienteController');
 });

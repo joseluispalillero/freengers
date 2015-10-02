@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Laravel</title> 
+<title>Sistema de clientes</title> 
 
 {!! Html::style('assets/css/bootstrap.css') !!}
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -62,8 +62,27 @@
 				</div>
 				<ul class="sidebar-menu">
 					<li class="header">NAVEGACION</li>
-					<li><a href="{{route("admin.user.index")}}"><i class="fa fa-th"></i> <span>Listado de usuarios</span> </a></li>
-					<li class="treeview"><a href="{{route("admin.user.create")}}"> <i class="fa fa-edit"></i> <span>Crear nuevo usuario</span> </i></a></li>
+					
+					<li class="treeview">
+	              		<a href="#">
+	                		<i class="fa fa-user"></i> <span>Usuarios</span> <i class="fa fa-angle-left pull-right"></i>
+	              		</a>
+	              		<ul class="treeview-menu">
+							<li><a href="{{route("admin.user.index")}}"><i class="fa fa-th"></i> <span>Listado de usuarios</span> </a></li>
+							<li class="treeview"><a href="{{route("admin.user.create")}}"> <i class="fa fa-edit"></i> <span>Crear nuevo usuario</span> </i></a></li>
+	              		</ul>
+	            	</li>
+	            	
+					<li class="treeview">
+	              		<a href="#">
+	                		<i class="fa fa-user-secret"></i> <span>Clientes</span> <i class="fa fa-angle-left pull-right"></i>
+	              		</a>
+	              		<ul class="treeview-menu">
+							<li><a href="{{route("admin.cliente.index")}}"><i class="fa fa-th"></i> <span>Listado de clientes</span> </a></li>
+							<li class="treeview"><a href="{{route("admin.cliente.create")}}"> <i class="fa fa-edit"></i> <span>Crear nuevo cliente</span> </i></a></li>
+	              		</ul>
+	            	</li>
+					
 				</ul>
 			</section>
 		</aside>
